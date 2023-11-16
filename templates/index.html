@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="Pt-BR">
+<head>
+    <title>Consulta MySQL</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            z-index: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        /* Estilos para a tabela */
+        table {
+            border-collapse: separate;
+            border-spacing: 10px; /* Ajuste este valor para controlar o espaçamento entre as células */
+            width: 100%; /* Largura total da tabela */
+        }
+    
+        th, td {
+            padding: 10px; /* Espaçamento interno dentro de cada célula */
+            border: 1px solid #000; /* Adicione bordas para separar as células */
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-bottom: 10px;
+        }
+        .inputs{
+            border-radius: 50px; 
+            padding: 5px;       
+        }
+    </style>    
+    <div class="container">
+        <div class="title"><h1>Consulta MySQL</h1></div>
+        <div class="fomulario">
+            <form method="POST">
+                <input type="text" name="nome" placeholder="Nome" class="inputs">
+                <input type="text" name="cpf" placeholder="CPF" class="inputs">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>                
+    </div>
+
+<!-- Tabela para exibir os resultados -->
+
+
+<!-- Tabela para exibir os resultados -->
+{% if resultados %}
+    <table>
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>NOME</th>
+                <th>DATA INI</th>
+                <th>DATA FIM</th>
+                <th>FUNCAO</th>
+                <th>MES_REF</th>
+                <!-- Adicione mais colunas conforme necessário -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado[0] }}</td>
+                    <td>{{ resultado[1] }}</td>
+                    <td>{{ resultado[2] }}</td>
+                    <td>{{ resultado[3] }}</td>
+                    <td>{{ resultado[4] }}</td>
+                    <td>{{ resultado[5] }}</td>
+                    <!-- Adicione mais colunas conforme necessário -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+{% else %}
+    <tr>
+        <td>Teste</td>
+    </tr>
+{% endif %}  
+
+</body>
+</html>
